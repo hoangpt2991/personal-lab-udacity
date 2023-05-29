@@ -1,0 +1,66 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| innodb             |
+| mysql              |
+| performance_schema |
+| sys                |
+| udacity            |
++--------------------+
+6 rows in set (0.01 sec)
+
+mysql> CREATE TABLE udacity.Student (
+    ->   id INT AUTO_INCREMENT PRIMARY KEY,
+    ->   name VARCHAR(50),
+    ->   age INT,
+    ->   grade FLOAT
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> SHOW TABLES FROM udacity;
++-------------------+
+| Tables_in_udacity |
++-------------------+
+| Student           |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO udacity.Student (name, age, grade)
+    -> VALUES
+    ->   ('John Doe', 20, 85.5),
+    ->   ('Jane Smith', 21, 92.3);
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
+ERROR 1046 (3D000): No database selected
+mysql> select * from udacity.student;
+ERROR 1146 (42S02): Table 'udacity.student' doesn't exist
+mysql> select * from udacity.Student;
++----+------------+------+-------+
+| id | name       | age  | grade |
++----+------------+------+-------+
+|  1 | John Doe   |   20 |  85.5 |
+|  2 | Jane Smith |   21 |  92.3 |
++----+------------+------+-------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO udacity.Student (name, age, grade)
+    -> VALUES
+    ->   ('John Doe', 20, 85.5),
+    ->   ('Jane Smith', 21, 92.3);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from udacity.Student;
++----+------------+------+-------+
+| id | name       | age  | grade |
++----+------------+------+-------+
+|  1 | John Doe   |   20 |  85.5 |
+|  2 | Jane Smith |   21 |  92.3 |
+|  3 | John Doe   |   20 |  85.5 |
+|  4 | Jane Smith |   21 |  92.3 |
++----+------------+------+-------+
+4 rows in set (0.00 sec)
